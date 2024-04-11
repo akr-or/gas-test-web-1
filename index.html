@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <base target="_top">
+  </head>
+  <body>
+    <div id="app1">
+      <h2>{{ tocTitle }}</h2>
+      {{ tocDescription }}
+    </div>
+    
+    <div id="app1-sub">
+      <ol>
+        <li v-for="list in lists">
+          <a :href="list[1]">{{ list[0] }}</a>
+        </li>
+      </ol>
+    </div>
+    
+    <div id="app2">
+      <h2>{{ tocTitle }}</h2>
+      <input type="text" v-model="textInput">
+      <p>{{ textInput }}</p>
+    </div>
+    
+    <div id="app3">
+      <h2>{{ tocTitle }}</h2>
+      <textarea v-model="textarea" placeholder="複数行入力可"></textarea>
+      <p style="white-space: pre-line;">{{ textarea }}</p>
+    </div>
+    
+    <div id="app4">
+      <h2>{{ tocTitle }}</h2>
+      <p>システム名: {{ selected }}</p>
+      <select v-model="selected">
+        <option disabled value="">システム名を選択してください</option>
+          <option>自動ルート組</option>
+          <option>スマート点呼</option>
+          <option>カルタ取り誤計上</option>
+      </select>
+    </div>
+
+    <div id="app5">
+      <h2>{{ tocTitle }}</h2>
+      <!-- <button v-on:click="urlGoogle()">urlをGoogleに変更</button>
+      <button v-on:click="urlYahoo()">urlをYahooに変更</button> -->
+      <input type="button" value="urlをGoogleに変更" @click="urlGoogle()">
+      <input type="button" value="urlをYahooに変更" @click="urlYahoo()">
+      <p><a :href="url">{{ urlTitle }}</a></p>
+    </div>
+
+    <div id="app6">
+      <h2>{{ tocTitle }}</h2>
+      <input type="text" v-model="textInput">
+      <input type="button" value="表示！" @click="displayInputText()">
+      <p>{{ inputText }}</p>
+    </div>
+
+    <div id="app7">
+      <h2>{{ tocTitle }}</h2>
+      <textarea v-model="textInput" placeholder="複数行入力可"></textarea>
+      <input type="button" value="表示！" @click="displayInputText()">
+      <p style="white-space: pre-line;">{{ inputText }}</p>
+    </div>
+
+    <div id="app8">
+      <h2>{{ tocTitle }}</h2>
+      <textarea v-model="textInput" placeholder="複数行入力可"></textarea>
+      <input type="button" value="表示！" @click="sendLineInputText()">
+      <p style="white-space: pre-line;">{{ inputText }}</p>
+    </div>
+
+    <?!= HtmlService.createHtmlOutputFromFile('js').getContent(); ?>
+  </body>
+</html>

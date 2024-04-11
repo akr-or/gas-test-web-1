@@ -1,0 +1,114 @@
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@3.4.20/dist/vue.global.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script>
+  // 裏で非同期処理
+  google.script.run.withSuccessHandler(initializeVue).getSpreadsheetValues();
+	function initializeVue(values){
+	  values.shift();
+	  new Vue({
+	    el: '#app1-sub',
+	    data: {
+	      lists: values
+	    }
+	  });
+	}
+	new Vue({
+	  el: '#app1',
+	  data: {
+	    tocTitle: 'スプレッドシート情報表示',
+	    tocDescription: '',
+	  }
+	})
+
+	new Vue({
+	  el: '#app2',
+	  data: {
+	    tocTitle: '単行入力フォームテスト',
+		  textInput: '',
+	  }
+	})
+
+	new Vue({
+	  el: '#app3',
+	  data: {
+	    tocTitle: '複数行入力フォームテスト',
+		  textarea: '',
+	  }
+	})
+
+	new Vue({
+	  el: '#app4',
+	  data: {
+	    tocTitle: 'プルダウンテスト',
+		  selected: '',
+	  }
+	})
+
+  new Vue({
+	  el: '#app5',
+	  data: {
+	    tocTitle: 'クリックテスト',
+      url: "#",
+      urlTitle: "ボタンをクリックするとURLが変わるよ！",
+    },
+    methods: {
+      urlGoogle: function () {
+        this.url = "https://www.google.com/";
+        this.urlTitle = "Google";
+      },
+      urlYahoo: function () {
+        this.url = "https://www.yahoo.co.jp/";
+        this.urlTitle = "Yahoo";
+      },
+    },
+	})
+
+  new Vue({
+	  el: '#app6',
+	  data: {
+	    tocTitle: 'クリックテスト2',
+      inputText: "クリックすると表示が変更されます",
+      textInput: ""
+    },
+    methods: {
+      displayInputText: function () {
+        this.inputText = this.textInput;
+      },
+    },
+	})
+
+  new Vue({
+	  el: '#app7',
+	  data: {
+	    tocTitle: 'クリックテスト3',
+      inputText: "クリックすると表示が変更されます。複数行の内容",
+      textInput: ""
+    },
+    methods: {
+      displayInputText: function () {
+        this.inputText = this.textInput;
+      },
+    },
+	})
+
+  new Vue({
+	  el: '#app8',
+	  data: {
+	    tocTitle: 'クリックテスト4',
+      inputText: "クリックするとテストLineに投稿します",
+      textInput: ""
+    },
+    methods: {
+      sendLineInputText: function () {
+        google.script.run
+          .withSuccessHandler(this.resultView)
+          // .postMessage();
+          .postMessage2(this.textInput);
+      },
+      resultView: function(result) {
+        this.inputText = result;
+      },
+    },
+	})
+
+</script>
